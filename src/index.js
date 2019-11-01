@@ -6,12 +6,12 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
-import { fetchUsers } from './actions';
+import { fetchUsers, fetchUser } from './actions';
 
 import './index.css';
 import App from './components/App';
 import UserPage from './components/UserPage';
-import Container from './components/Container';
+import Users from './components/Users';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -29,12 +29,14 @@ const store = createStore(
 
 store.dispatch(fetchUsers());
 
+store.dispatch(fetchUser(3));
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <App className="App">
                 <header className="App-header">
-                    <Route exact path="/" render={() => <Container /> } />
+                    <Route exact path="/" render={() => <Users /> } />
                     <Route exact path="/users/:id" render={(props) => <UserPage {...props} /> }/>
                 </header>
             </App>

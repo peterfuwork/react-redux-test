@@ -4,16 +4,14 @@ import * as actions from '../actions';
 
 import UserList from './UserList';
 
-class Container extends Component {
+class Users extends Component {
   render() {
-    
-    const { users } = this.props;
-    console.log(this.props)
+    const { all_users } = this.props;
     return (
         <Fragment>
             {
-                users.length === 0 ? (<div>Loading...</div>) : (
-                users.map((e, i) => {
+                all_users.length === 0 ? (<div>Loading...</div>) : (
+                  all_users.map((e, i) => {
                         return <UserList user={e} key={i} routerProps={this.props} />;
                     })
                 )
@@ -25,8 +23,9 @@ class Container extends Component {
 
 function mapStateToProps(state) {
   return { 
-      users: state.users
+      all_users: state.users.all_users,
+      user: state.users.user
   };
 }
 
-export default connect(mapStateToProps, actions)(Container);
+export default connect(mapStateToProps, actions)(Users);
