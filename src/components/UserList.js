@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
 import faker from 'faker';
 
 class UserList extends Component {
@@ -17,22 +20,23 @@ class UserList extends Component {
     // }
 
     render() {
-        const { user } = this.props;
+        console.log(this.props)
+        const { single_user } = this.props;
         return (
             <div>
-                <Link className="user" to={`/users/${this.props.user.id}`}>
-                    <img ref={this.imageRef} alt={ user.name } src={ faker.image.avatar() } />
-                    <div>{ user.name }</div>
-                    <div>{ user.email }</div>
+                <Link className="user" onClick={() => this.props.fetchUser(this.props.single_user.id)} to={`/users/${this.props.single_user.id}`}>
+                    <img ref={this.imageRef} alt={ single_user.name } src={ faker.image.avatar() } />
+                    <div>{ single_user.name }</div>
+                    <div>{ single_user.email }</div>
                     <div>
-                        { user.address.street }&nbsp;
-                        { user.address.suite }&nbsp;
-                        { user.address.city }&nbsp;
-                        { user.address.zipcode }
+                        { single_user.address.street }&nbsp;
+                        { single_user.address.suite }&nbsp;
+                        { single_user.address.city }&nbsp;
+                        { single_user.address.zipcode }
                     </div>
                     
-                    <div>{ user.phone }</div>
-                    <div>{ user.website }</div>
+                    <div>{ single_user.phone }</div>
+                    <div>{ single_user.website }</div>
                     <br />
                 </Link>
             </div>
@@ -40,4 +44,10 @@ class UserList extends Component {
     }
 }
 
-export default UserList;
+function mapStateToProps(state) {
+    return { 
+        all_users: state.users.all_users,
+    };
+  }
+
+export default connect(mapStateToProps, actions)(UserList);

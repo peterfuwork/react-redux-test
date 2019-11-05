@@ -5,7 +5,7 @@ import {
 
 const initialState = {
     all_users: [],
-    user: null
+    user: []
 }
 
 export default function(state = initialState, action) {

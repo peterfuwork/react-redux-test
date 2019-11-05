@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
-import { fetchUsers, fetchUser } from './actions';
+import { fetchUsers } from './actions';
 
 import './index.css';
 import App from './components/App';
@@ -28,8 +28,6 @@ const store = createStore(
 );
 
 store.dispatch(fetchUsers());
-
-store.dispatch(fetchUser(3));
 
 ReactDOM.render(
     <Provider store={store}>

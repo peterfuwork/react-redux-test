@@ -12,7 +12,7 @@ class Users extends Component {
             {
                 all_users.length === 0 ? (<div>Loading...</div>) : (
                   all_users.map((e, i) => {
-                        return <UserList user={e} key={i} routerProps={this.props} />;
+                        return <UserList single_user={e} key={i} routerProps={this.props} />;
                     })
                 )
             }
@@ -24,7 +24,6 @@ class Users extends Component {
 function mapStateToProps(state) {
   return { 
       all_users: state.users.all_users,
-      user: state.users.user
   };
 }
 

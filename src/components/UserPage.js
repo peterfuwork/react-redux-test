@@ -1,17 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class UserPage extends Component {
 
     componentDidMount() {
         window.scrollTo(0, 0);
+        this.props.fetchUser(Number(this.props.match.params.id))
     }
 
   render() {
-    const { users, match } = this.props;
-    const [ user ] = users.filter(user => user.id === Number(match.params.id));
-    if(users.length === 0) {
+    const { user } = this.props;
+    if(user.length === 0) {
         return (
             <div>
                 loading...
@@ -38,8 +39,8 @@ class UserPage extends Component {
 
 function mapStateToProps(state) {
     return { 
-        users: state.users
+        user: state.users.user
     };
 }
 
-export default connect(mapStateToProps, null)(UserPage);
+export default connect(mapStateToProps, actions)(UserPage);
