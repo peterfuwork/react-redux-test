@@ -20,11 +20,10 @@ class UserList extends Component {
     // }
 
     render() {
-        console.log(this.props)
         const { single_user } = this.props;
         return (
             <div>
-                <Link className="user" onClick={() => this.props.fetchUser(this.props.single_user.id)} to={`/users/${this.props.single_user.id}`}>
+                <Link className="user" to={`/users/${this.props.single_user.id}`}>
                     <img ref={this.imageRef} alt={ single_user.name } src={ faker.image.avatar() } />
                     <div>{ single_user.name }</div>
                     <div>{ single_user.email }</div>

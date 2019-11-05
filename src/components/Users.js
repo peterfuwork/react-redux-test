@@ -6,6 +6,7 @@ import UserList from './UserList';
 
 class Users extends Component {
   render() {
+    console.log(this.props)
     const { all_users } = this.props;
     return (
         <Fragment>
@@ -24,6 +25,7 @@ class Users extends Component {
 function mapStateToProps(state) {
   return { 
       all_users: state.users.all_users,
+      user: state.users.user
   };
 }
 

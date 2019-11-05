@@ -12,6 +12,7 @@ class UserPage extends Component {
 
   render() {
     const { user } = this.props;
+    console.log(this.props)
     if(user.length === 0) {
         return (
             <div>
@@ -21,7 +22,7 @@ class UserPage extends Component {
     }
     return (
         <Fragment>
-            <Link to="/">&lt;&nbsp;Back</Link>
+            <Link onClick={() => this.props.removePrevUser()} to="/">&lt;&nbsp;Back</Link>
             <div>{ user.name }</div>
             <div>{ user.email }</div>
             <div>

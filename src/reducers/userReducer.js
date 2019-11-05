@@ -1,6 +1,7 @@
 import { 
     FETCH_USERS,
     FETCH_USER,
+    REMOVE_PREV_USER
 } from '../actions/types';
 
 const initialState = {
@@ -8,7 +9,7 @@ const initialState = {
     user: []
 }
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_USERS:
             return {
@@ -20,6 +21,11 @@ export default function(state = initialState, action) {
                 ...state,
                 user: action.payload
             };
+        case REMOVE_PREV_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
         default:
             return state;
     }

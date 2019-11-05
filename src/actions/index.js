@@ -2,7 +2,8 @@ import axios from 'axios';
 import config from '../config';
 import {
     FETCH_USERS,
-    FETCH_USER
+    FETCH_USER,
+    REMOVE_PREV_USER
 } from './types';
 
 export const fetchUsers = () => async dispatch => {
@@ -21,5 +22,13 @@ export const fetchUser = (user_id) => async dispatch => {
         type: FETCH_USER,
         payload: user
     });
+}
+
+export const removePrevUser = () => {
+
+    return {
+        type: REMOVE_PREV_USER,
+        payload: []
+    }
 }
 
